@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 200px;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="header-logo.png" alt="Logo">
+  </header>
+  
+  <form id="inputForm">
+    <label for="bookinfid">BookingID:</label>
+    <input type="text" id="bookingid" name="bookingid" required>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required>
+
+    <label for="pickupAddress">Pickup Address:</label>
+    <input type="text" id="pickupAddress" name="pickupAddress" required>
+
+    <label for="dropAddress">Drop Address:</label>
+    <input type="text" id="dropAddress" name="dropAddress" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required>
+
+    <label for="vehicleType">Vehicle Type:</label>
+    <input type="text" id="vehicleType" name="vehicleType" required>
+
+    <label for="pax">Pax:</label>
+    <input type="number" id="pax" name="pax" required>
+
+    <label for="bags">Bags:</label>
+    <input type="number" id="bags" name="bags" required>
+
+    <button type="button" onclick="generatePDF()">Generate PDF</button>
+  </form>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+  <script>
+    function generatePDF() {
+      // Retrieve input values
+      var name = document.getElementById("name").value;
+      var phone = document.getElementById("phone").value;
+      var pickupAddress = document.getElementById("pickupAddress").value;
+      var dropAddress = document.getElementById("dropAddress").value;
+      var date = document.getElementById("date").value;
+      var time = document.getElementById("time").value;
+      var vehicleType = document.getElementById("vehicleType").value;
+      var pax = document.getElementById("pax").value;
+      var bags = document.getElementById("bags").value;
+      var bookingid = document.getElementById("bookingid").value;
+
+      var logoDataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATQAAAB+CAMAAACd6x0TAAACT1BMVEVHcEwyc2MxcmMycmM2fWwycmMydGTXtW3XtW1BhXI7h3U1emo/kn5DmoVBlYEycmM0eGgzdGUycmM7h3U0eGg2fGs3fWw5gnE5gnFGoIswbl88ingzdGU4gG8xcWI3f24ycmM6hnRDmoYycmMzdWUxcWI2fGtGoIs4gXAyc2QydGVPtp9Dm4czdWUzdGU7iHY9jHo/kX4va105gXFwuphCl4NDmYVJqJJBloI4gG8/kH0mWU0oXVE6hnQpXlIoW1BZzLJc07hYya89jHo5hHM/kX8/j31EnIdCmIQnWk80dmdazrQrZFdOs5wnWU5NsJlKqZNd1LlXyK5Su6RQuKBGoYzXtW3XtW1b0rdc07lXxqxYyrFd1blXxq1Nr5lVwakycmP///8zdGU5gnE5hHJAkn80dmc4gG89i3k3fm02emo8iXc2fGw+jXsyc2Q/kH01eGhEm4c1eWlAk4BCloJDmYVFnYlGoIs4f25IpI86hXQ7hnVHoo0+j3w8iHZBlIE7h3UtZ1krZFcqYFRPtZ5LrJZMr5lDmIRc0rdKqZRd1bpOspsxcGFUwahWxKsva11e17xf2r5Jp5FZyrBRuKAuaVtCl4Ni4MNazbMoXVEwbV9g3MBr9dVXx65h3sJp8NFb0LVo7M5SuqNj48YnWU5TvaVk5chv+dpl58r8/v1m6szx+vjT6OPd8u2B7NSq4NTo9fLl/Pe37uGz0cvD8ufI4NuTx7t23sZWppR1qJxuvKpwyran69tUm4uS2cm/2dOBz72g2s2Ft6xcrptet6NGCJoZAAAAYHRSTlMAZw3gIeUo2mYESOBvSAnVFqOVP9I6lk1xPYGmSIw/97bRlLB0w7dXp/YzG8Zc7uLHVVFVDn/wMCTV8u3dycuuauuJnPDRuarfZ6hM8OyTvdau6qjM8lUooNjK1cf1c+SIjIZQAAAS2ElEQVR42uzZ+U+TeRoA8ILIbpEiCi4il+KBCuroijImk3hrxhivdXeu3bVCBZSbckPhBxTEQFAIQ+LAIAblPhxGN0CIRv+wfZ7ne75vW3i7uJs1vE8yMn1L+3Y+81zf6nDYYYcddthhhx122GGHHXbYYYcddthhhx122GGHHXbYYcf/UThjMJw2hLWIOXn67I2fzpxp7+hoP/P9TzfOXsm07VaMzNM3zgy1g1e3iA6w+/67K8dtm8Bx/PQPPf2C7CkPcmsfOvPdFTvfAiTZ2Zs9/WSGYs8hBgfxz6ek1j7U/+NpO93MZH8fIDNIMyQbHPwZYxDhkA3Vem6ejrGlVPM/fbNroIfVZjeSgddLCnRjakP9/T0DP16xsXgk/tDZBWjCDLLs5ctXLIhNqPX0DHTdyrS9cCU7O9LZyRNNmL16NcqC2FCtg9QGurr+GTTZ/vbHLztCmHSZ14ZHRKLhDCCz0dFxFsTG1HiqdY6cDfLuf/3Dlx3W59zJq8MjI4ZE42YvKICNqfECBbTOkVvrfIwmXu0dZtXZ39/e3t0tzF68+JWC1LRUG8BUG/7Lum5srqutEk1LtHFOpqvh2tFPqTayrtWciVefEJpsaU+ZGaL9QoFqxlTD+hzuXb9qJ68+4WiipalEA7DXrzU1E1rrtXXa1zKvP3rS2tor5gC0NFad0P+ZGarJVNPRFnpbn9xal2fRmGsPNTSYA6ylvZsen8dEe00REG35PaA9+sd6RMt+HBBt6c34m7lfVkL7MDGCaI8S1+Gy8Sww2tTE+LR77nVwtA9jvw8j2sPrX0JbizwWFpYcG+zZiNRjyZHW+0zMdYE2bOhp78bc0+NzQi3AIJhxu98ztMfpxrc8tJEiwv9mOzb6RWSQ39hqeuk2+YpU7epOv4thgW4evmPDHYq9xwIQxPJnD2+JtFqcdYQmpueAmJ5Lbvf8+Bs3qomVA9DUygFmE50c7dlJw1uGsQ8Y4BNsveMXpt/aK65vNr00Vb5ij7YrHRAXk8WlPeyxAS15o7rfTr9sC5Nvcqdkh6Vsy7xNaI/Me9rzKUCB+uRqvxr3tP5+MHO/GRFo15yfCc15WFw/YPr4qSUivlW/HYmPV0ULM9xwQ8RKn2m3FbX0msa6xw8fcjR1IoDqdFN9gto0OxGMai0NzdzvR4ZbGVqd6zOhxeL/boq7ppen3hOh5eChuyJWQDtmuuMGQ67tMT27ZXWznNuAxpqafvbs6F5ClfnRN26m9sJ49qRnWXUytCzn50FL5gZgY+o+qWUywuXFFHjEJBUavb5EoUUcMN2xZLf2tgdLzB8obPVEq5ZofHzyVJsillGsT1Qb53lGZu1EKasT0RoTPw/aHgRgNHtMaPdlqEmwDx5VUCQb3uHePYW2xf+eqQF6qIzD4auYxZ4or27Um5pINapOqM9Xc1yNzDgaM8Pq5C2trrHmUihou7UwdpitZUSANPuNL40rkrFddUB2AX5bom2vqEBy+baxByDvoPHtPRaZusWvBA/yK3sPJYdttphq0VXlkGrPDE2NUm2Jucy/5EBz035mVJ0SrTrHOtqB4M12L6USSXxtQquVITkjagtFKDSWjRLtEKQd1OtOuucOnkzyA/ALtN/E7OTzdRW0rLZyvT7F/OwfmuIwL6fHhBr7m5WODm42xquToVWXZ1tGK1kBLa2oiCvUphl/Ky4/V4TkTMiXESXRCok8Qm97Zfd45jk3s2Ern2VOG9mtIjjpKmPA2yfRDKnGqxPqc3CO/9vEu+e6GW62sjrraqrLsyyh4Vi8GxwtohAziTHkGgs3Lk9Gveg62fiIQSo0eAMwly/eQl1vk/gAd6lYD4pn41m74I/4Brzy309GN3uxPutEfYqu1jMjZOafL7mlGprNi4ezI2p2QnWWt+VYQaPJGBwtCrFy087n5oJGghGtQcU2fm1/PQXSKbRcIpdo+6nlxYu8Y8Uq3sCx2dDjeFdbeRJcrPRq9Umpxgp0Sko9l0kHapqZe2a4V83OmvKqvmgraDQcg6NtJ62vv8lDi+1GNJ8KcasjPl8LRUODQmO5p9Ag7YqK4lWx4kdYA1rMKY+3r4qjya4GqbYoodzL3RIQ1JQZO3eqRKvyXrKEBg2mIi0o2jnUatmX1AAQviQjWoGKc/xEWfBAhE+hsdRTaPlYrqINprDZuga0xFIPq0+9q6HajLKZ71hyB4pZPjpldXovO1dH+1MZrhPB0b5pQK6UbB9CfGNEK1Zxwd9RoVHi1Ss0LNdaiUaLnYZGgyEUtOim0ko5CuQABbVZhTPRrepTj5leNTop0Zo9mRbQaAMLiuY870Ou6D+TwynDr8U1YZSyiOGfv6lJOCo0SDuoWg1NH7gp1OHuS7R4nAshoZ0r9ks1UlvUdZaHpgKhLfLilIlWWeqygEY7WFC0CBDDrDlYQBCG8Rnn0YJNv3OcsBTwJFp0ARWtQqMJu0t8RxRL4dTQgC0UtIsFmGpsFMgCBbUZXWe+fyZQdRqLs6qv2VMabQGtCPewoGgJmGDFxTnhxZRUUQa0ZgzvKfrBbnWhsrLScwoRtd+NLqY0lWhJ1OJ2BbljPA3TUNCOFBhTjU3Q3uFZnWdiaDFAfc60yuIUidaUYgUtwNqqDU/KsKYYxylIH48n2tCAvRRZ9Cd96xnj9YJfFvwDeC7Vc/A9NDTscPUroN0LCc15/gGlWp9RrXXR6LPc41+fY4vcTHW00uIkC2hAVpuflsAjyvR0EmZY02WH4yuPByDOGdDaIKqqsqswaJM+2dYHke4lO4VWSp1Obo1JPhwMiBabIEN+ORRPK0gIaDHnfSzVVIGSmqkc5wc++FcnM5PFiYlWcNGIVhIQrZbW11xa7OuPmJ6+QI0e3iepEoswy4BWVY6RcQL/PIG5mkF+GW1o51VoHmpyCu0BLnO72JkC7oyztHCbhlYWElp4fQummqdZpBpXmzUm1ViPf33O6GZQnJhoBV8Z0EoCoimz+vqGBhOak1Ul1F42dC9v3wkDWnk1RkYW/cDv19OR77IL5draNDRscaUaGo5TjibUFBqubSGh5dVDqjV5VIGS2oJZaLlz0nxpQZixhkZmaq9aAc1g1mJCy0GyykpoZUeBrK9NO5kBWnUNRkY2+4HfNqDeJRfIAZtCg+EAbAoNhylDq5dqGhqqWUdzhufmNTwQBarUzMNybHJk2XRpSjdjxVn8wGdA8/++2g+txYx2lMywPSUimSaBaEDV2NiY4WrEgGx03oYr1dGuakw4Da2Z1DQ0VGNoUk2h4apbFkqm5eeJAsW2JvrarDmtJrq6TPX54SGZyYaGieZrsIamJZrPhJZNZs3w3xtLZlX6+ExEq7q6jON1GNDuchox5RJd1aSmoZHafw0tDVLNV2BSW/DfL5Z7jfU5tsDmJpmJ4myp3xcaWosfWhKheXHdP4Fo5ekmNNDKcFyHWz+77XRkNKJaDKBV/w/RnOfzSa1Y7B2k9ps/2mSrsT6nHpvMmtAsb79VtLSEKBZxpuFJaJfZt6NtYrMwZZojHTOtMceRjWZZDutosXDH/WtFc2wqZAUKbQ3UeF+b9V/Kxj59MtTnh2dUmpoZFGdeborFnpYXZLmF4YlqtLlcovo8YexpyJaBGUY/L2F1pjus9zQ6e64ZbV9hba5SY9NgIdBB8+0TvT7HPrE0o36mzPK3W52eQdByaOGovJAOcQH+JwJbpnEQ0NjMrGFal2twA3FYn56EtsbpicdnpVYKzaQNSvS3QGiTj97q1cnTTJjhEKjPzS+MsrqnBUE72kRqNAxgTcOlw6WvHGxPczgu48+sWKrKkw7rexpHW9ue5girKCqktka5BtOgr6p6NhDa2KePWn2+ZWlW3ibMsKHl1qqv5Vc7EQRBy2Zf/Qg2dIvWl1t2IoDSpTOBCxMMTgauNjwSWDkRMDQ0q/3PTwSOgxX3NTWcoX1adc5qR863j39XDz4SGbQz3DWgNrnZJitfQhaiWhC0JDys00GK3BAuXT970qnpKP69I0Y6nkVhUrj66PCpnT1LTWdPPHxKNDpFGY5RoZ09HeGHy7gaVihsHpXNqjpnP/5LNbLJZ6o+JxkZphnuGgU+Znb/W4cltODfcuwq+Hc75/eTRhbF8ZFSE8BS+sOaEHVNVkwlS62S7cbFyMP2xcb4N+C0iqIi/oh2i6LAgy8kPLEJPPtipMkmBKMPxsT+Y3vPOffeuQyi4yabbML9vnSGaQzzyTn3njnnO1CTQ4Jb2vmlpcsBz+cM2m/w718feLfj2RG2Oe7pchwrXY4hbH6r0KDN8ajBysgypwbrGtRruzI7v//YP7Conf24PJdRt4WrGYQZ1GdsPQNm69s9TqDhWPNuaH7euFbAbf6uQMNG2hGD5vlwJMTOnmFX0uqA9m1stPbTslCeSWhfcc7S/+/7acaoubwtqLEqd2PzSjK7ZIvtvkXtYl/k59klRBmG2SEy+0LMtt1OoEHntgO0XhwMrEy8R00gucOAvXM7Cc1T2cFlSeil1q3auV3p3LkdAmTrLe3uR3Zujd5xMyOowcK20pDMoBGzt/dnXebkrThCZDuIjC1nUGsAs8xrjzNonWYEnihMoHJrfaIfiTFnlb+vqLMN0H4VTW6YInhtM4I+3C1zCjSYEfBhsecNzQjCrTOCRw2LjVDaxAxllQcsbBs8B79f72JxubV1UBfxdcCvXRAyCjNYzhiz1HZmedTJhP2+adQQPI9mj/ndD+C0YKXPPo2aVAdTUAd77dOoHI6jLFsCDY8Jk9+XwnGUZUvAaRQ3CvU6siWw2xPUMEWvBLMdKpTY/rTH0/Li5IboXe8sETIIM2C2iszG3Y5sCTD27DD3fEuNyQD3OMJQeG3tD/vccxLnnVzgH/HS4NOClsXBp/w6UVr6p+Hvej7hAC/TZoD5BB8EXnMH0UNWq3dELbUKKfqFsrN+TX0tBLe7RdTqu5SfdcwLQIY7AKQmY2aaP7dbrUIjUhFlws64jSmSdzeNs7aP/H786D84fq9M2BHOJI5HaUCcA+OCl2bs6oQdnsotq9VPuIyt+0YHeqj+t0oMw+gXDt9gT/Bpu6f3br0slRKM2jYGW+6c8LDF5JDv+YzcSZPy8wSv3rIgQ2QsMzmzDNuAVJ+czeMKCipeDm7b4y60lIhHFxlfZH9pAgPvo93LEcWU454OiB4v2TkULwcW/Vbgk5mDQgyrMtNyJRiedlPfeOAhaL3jQM3MQIquYnbWl2BHIG5EbhcT82LzBrMTNnQVGUtNM50IeZxBA9OQBQ5WOAEtTAYr2SoZIzdQwOYaQmhROsbOkpe8Gxa0JNqGFPvoO7ANcWBQYLRkxXDbd30w0Nht1GpADYMNsrO+8S17nKNVmAomVr7d4AVg2oS0gLUMkXFmiURp0HAGjZ5KVXACWoSsfKMtj6nJpNw+XxFEhBag47eKR03xp2E6KktsVOEFPqunLaEUtH3VEQf2bvd8mVGDhS3zmeVfMwc9QuDGwSE7CLKz6012/RaeSRBZUiAzE6VSyPMIaAROkOu1rCmQRFH15pl6Wp2QSbo+jScIeOABJyR8H+JlkqHP/rpHqw845DIcKFhm1DDYWCQ1s7CPYmsVrCi5HDflQAF3kWssnh3BzvRZRhmmZqlWChuPhGaRE7cwRvZkeUeD5CN9o3puGZyo8E+xU4yuQbLdqp5bSEbbyxdpaeIOtb1Io7x8kXjh7AdHXM8rZUjRdLqx2ExCwY7cRCMfbTwMX2Ox/u1qsYnEFGQQZrWy7ZWcyBO7RNIF2648EZRCcOLzyS/t9qHkRhemc4ITwWNMs2H6XG5EdMnX6TWfyB3Z535Jr3ykR4YNhxquVDDYUuc3q7C0pdA6IEe6XNnG2XX271tOTCJjYVYrP3cZ/3/d+0KZJxzpiQw/5jaC+QoE29VNJg07guSGK7F0B39uXHxtrOAqm7KQsTArl/uN7pMnlM+zYLsyS7AjmFhEoSWKigASO7hdzWHJA8QEslq5Uhk1ulGBmQILthosbaVEwuTctqWjX4hXiEAszZGVK/kXXfrTYOH5Qj6PSxtiS2MtkKHq0xLVhyYnRsgq+ZDL6FINzxckNuSG4LD+JHjLVnWoEKvkC7MBo2s1yKhxbMStpNTuplobIjEKsnyhq5lBrBURm+QG4Dg7Ep0jMAwyhqzLmbF1baYI2DDcgBuCk+xK/KwsiAGyYtxldLkC8WJRcANwSA5Vk0cAjBMrFIvBrv8pMMPjDxarghuAQ3Itgg8RGCNWnJnq9Je66EfnYGGbrSI24kbkVPGP8b/EA4YWNZmDsWqVgxPkWkRXqtXOYdaNci/ETqsWuHbBtZk5lybVhu2UwCnwqpY0sjtbbHOzp6Rqi+CTWHxQ/wx1p3Cbi8dO2zSzMKWD7P5NITy3EJ+NIbvYzGw8OOXWMea0evO7XH6PxqWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWl9R/oH2/CvRJRtUW3AAAAAElFTkSuQmCC";
+
+      // Create the document definition
+      var docDefinition = {
+      content: [
+      {
+          image: logoDataURL, // Replace with your logo URL
+          width: 150,
+          alignment: "left",
+          margin: [0, 0, 0, 10] // top, right, bottom, left
+        },
+        { text: "\n" }, // Insert a line break
+        { text: "\n" }, // Insert a line break
+        
+      {
+          text: "Voucher",
+          fontSize: 20,
+          color:"Black",
+          alignment: "Left",
+          bold: true,
+          margin: [0, 0, 0, 10] // top, right, bottom, left
+        },
+
+        { text: "Booking ID: " + bookingid, bold: true },
+        { text: "Date: " + date, bold: true },
+       
+       { text: "Time: " + time, bold: true },
+
+        { text: "Guest Name: " + name, bold: true },
+      
+        { text: "Phone: " + phone, bold: true },
+   
+        { text: "Pickup Address: " + pickupAddress, bold: true },
+       
+        { text: "Drop Address: " + dropAddress, bold: true },
+        
+        { text: "Date: " + date, bold: true },
+       
+        { text: "Time: " + time, bold: true },
+       
+        { text: "Vehicle Type: " + vehicleType, bold: true },
+       
+        { text: "Pax: " + pax, bold: true },
+        { text: "Bags: " + bags, bold: true },
+       
+        { text: "\n" }, // Insert a line break
+        { text: "\n" }, // Insert a line break
+        { text: "" }, // Insert a blank line
+        { text: "Supplier Information: ", bold: true },
+        { text: "Phone : +44 7361592610 / +91 7506066246  ", bold: true },
+        { text: "Email : amigo@leamigo.com  ", bold: true },
+        { text: "\n" }, // Insert a line break
+        { text: "Additional Notes: ", bold: true },
+        { text: "Please connect to Free Wifi at airport and open your whatsapp, as this helps driver to contact you. Post coming out of Arrival hall, if you cant find the your name card, Call/Whatsapp on the above number ", background: "yellow"},
+      ],
+        defaultStyle: {
+          font: "Roboto"
+        }
+      };
+  
+      // Load the required font files
+    //   pdfMake.fonts = {
+    //     Roboto: {
+    //       normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/fonts/Roboto/Roboto-Regular.ttf',
+    //       bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/fonts/Roboto/Roboto-Bold.ttf',
+    //       italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/fonts/Roboto/Roboto-Italic.ttf',
+    //       bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/fonts/Roboto/Roboto-BoldItalic.ttf'
+    //     }
+     // };
+  
+      // Generate the PDF
+      pdfMake.createPdf(docDefinition).download("input_values.pdf");
+    }
+  </script>
+</body>
+</html>
